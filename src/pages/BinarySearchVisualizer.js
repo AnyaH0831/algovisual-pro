@@ -1,0 +1,123 @@
+import {useState, useEffect, useRef} from 'react'
+
+function BinarySearchVisualizer(){
+
+    //State Management
+    const [array, setArray] = useState([7, 14, 21, 28, 35, 42, 49, 56, 63, 70]);
+    const [target, setTarget] = useState(35);
+
+    const [currentStep, setCurrentStep] = useState(0);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const[speed, setSpeed] = useState(1);
+    
+    const[left, setLeft] = useState(0);
+    const[right, setRight] = useState(array.length - 1);
+    const[mid, setMid] = useState((left+right)/2);
+
+    const canvasRef = useRef(null);
+
+    //Draw function
+    const draw = () => {
+
+        const canvas = canvasRef.current;
+
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+
+        ctx.clearRect(0,0, canvas.width, canvas.height);
+
+        const boxWidth = 60;
+        const boxHeight = 60;
+        const space = 10;
+        const startX = 50;
+        const startY = 100;
+
+        array.forEach((value, index) => {
+            const x = startX + index * (boxWidth + space);
+            const y = startY;
+
+            if (index === mid){
+                ctx.fillStyle = 'orange';
+            }else if (index >= left && index <= right){
+                ctx.fillStyle = 'blue';
+            }else{
+                ctx.fillStyle = 'white';
+            }
+
+
+            ctx.fillRect(x,y,boxWidth,boxHeight);
+            ctx.strokeStyle = 'black';
+
+            ctx.strokeRect(x,y,boxWidth,boxHeight);
+
+            ctx.fillStyle = 'black';
+            ctx.font = '20px Arial';
+            ctx.textAlign  = 'center';
+            ctx.fillText(value, x + boxWidth/2, y + boxHeight/2 + 7);
+
+            ctx.font = '14px Arial';
+            ctx.fillText(index, x+boxWidth/2, y+boxHeight + 20);
+        });
+
+        
+
+    };
+
+    useEffect(() => {
+        draw();
+    }, [left,right, mid,array]);
+
+    const handlePlay = () =>{
+        setIsPlaying(true);
+    }
+
+    const handlePause = () => {
+        setIsPlaying(false);
+    }
+
+    const handleReset = () => {
+        setIsPlaying(false);
+        setCurrentStep(0);
+        setLeft(0);
+        setRight(array.length - 1);
+        setMid(Math.floor((0+array.length - 1) / 2));
+    }
+
+
+    return (
+        <div>
+            <h2>Binary Search</h2>
+            <div style={{display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
+                <canvas
+                    ref = {canvasRef}
+                    width = {800}
+                    height = {300}
+                    style = {{border: '1px solid black'}}
+                />
+            </div>
+
+            <div style={{marginTop:'20px'}}>
+                <button onClick={handlePlay} disabled={isPlaying}>
+                    Play
+                </button>
+                <button onClick={handlePause} disabled={!isPlaying}>
+                    Pause
+                </button>
+                <button onClick={handleReset}>
+                    Reset
+                </button>
+            </div>
+
+            <div style={{marginTop:'10px'}}>
+                <p>Target: {target}</p>
+                <p>Left: {left}, Right:{right}, Mid: {mid}</p>
+            </div>
+
+        </div>
+    )
+}
+
+
+export default BinarySearchVisualizer;
+
