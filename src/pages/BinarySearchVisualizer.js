@@ -1,5 +1,18 @@
 import {useState, useEffect, useRef} from 'react'
 
+const COLORS = {
+    inkblack:'#001219ff',
+    darkTeal: '#005f73ff',
+    darkCyan: '#0a9396ff',
+    pineTeal: '#004733ff',
+    dustyOlive: '#75906dff',
+    vanillaCustard: '#e9d8a6ff',
+    goldenOrange: '#ee9b00ff',
+    rustySpice: '#bb3e03ff',
+    oxidizedIron: '#ae2012ff',
+    mahoganyRed: '#a5211cff'
+};
+
 function BinarySearchVisualizer(){
 
     //State Management
@@ -38,20 +51,20 @@ function BinarySearchVisualizer(){
             const y = startY;
 
             if (index === mid){
-                ctx.fillStyle = 'orange';
+                ctx.fillStyle = COLORS.goldenOrange;
             }else if (index >= left && index <= right){
-                ctx.fillStyle = 'blue';
+                ctx.fillStyle = COLORS.darkCyan;
             }else{
-                ctx.fillStyle = 'white';
+                ctx.fillStyle = COLORS.darkTeal;
             }
 
 
             ctx.fillRect(x,y,boxWidth,boxHeight);
-            ctx.strokeStyle = 'black';
+            ctx.strokeStyle = COLORS.vanillaCustard;
 
             ctx.strokeRect(x,y,boxWidth,boxHeight);
 
-            ctx.fillStyle = 'black';
+            ctx.fillStyle = COLORS.vanillaCustard;
             ctx.font = '20px Arial';
             ctx.textAlign  = 'center';
             ctx.fillText(value, x + boxWidth/2, y + boxHeight/2 + 7);

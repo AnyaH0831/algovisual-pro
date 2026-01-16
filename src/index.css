@@ -1,10 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
+:root {
+  /* CSS HEX */
+  --ink-black: #001219ff;
+  --dark-teal: #005f73ff;
+  --dark-cyan: #0a9396ff;
+  --pine-teal: #004733ff;
+  --dusty-olive: #75906dff;
+  --vanilla-custard: #e9d8a6ff;
+  --golden-orange: #ee9b00ff;
+  --rusty-spice: #bb3e03ff;
+  --oxidized-iron: #ae2012ff;
+  --mahogany-red: #a5211cff;
+}
+
+/* body {
+  
+  color: var(--vanilla-custard);
+} */
+
 /* base styles */
 * {
   margin: 0;
   font-family: "Quicksand";
-  color: #333;
+  background-color: var(--ink-black);
+  /* color: #333; */
+  color: var(--vanilla-custard);
 }
 .navbar {
   padding: 20px;
@@ -51,5 +72,22 @@
 
 button{
   font-size: 20px;
-  color:
+  background-color: var(--golden-orange);
+  color: var(--ink-black);
+  padding: 5px 5px;
+  border: none;
+  cursor: pointer;
+  min-width: 100px;
+  border-radius: 5px;
+  margin: 5px;
 }
+
+button:hover {
+  background-color: var(--rusty-spice);
+}
+
+
+/* button{
+  font-size: 20px;
+  background-color: var(--golden-orange);
+} */
