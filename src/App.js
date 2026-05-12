@@ -1,11 +1,10 @@
-import './App.css';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import BinarySearchVisualizer from './pages/BinarySearchVisualizer';
 
 function App() {
   return (
-    <div className="App">
+    <div className="min-h-screen bg-[#001219ff]">
       <Navbar />
       <div className="content">
           {/* <Home /> */}

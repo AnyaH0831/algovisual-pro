@@ -25,7 +25,7 @@ function BinarySearchVisualizer(){
     
     const[left, setLeft] = useState(0);
     const[right, setRight] = useState(array.length - 1);
-    const[mid, setMid] = useState((left+right)/2);
+    const[mid, setMid] = useState(Math.floor((0 + array.length - 1) / 2));
 
     const canvasRef = useRef(null);
 
@@ -73,7 +73,7 @@ function BinarySearchVisualizer(){
             ctx.fillText(index, x+boxWidth/2, y+boxHeight + 20);
         });
 
-        
+
 
     };
 
@@ -139,37 +139,64 @@ function BinarySearchVisualizer(){
         return () => clearTimeout(timer);
         
     }, [isPlaying,left,right,mid,currentStep, array, target, speed]); 
-
+                  
     
-
-
     return (
-        <div>
-            <h2>Binary Search</h2>
-            <div style={{display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
+        <div className="w-full">
+            <h2 className="text-3xl font-bold mb-5 text-center" style={{color: '#e9d8a6ff'}}>Binary Search</h2>
+            <div className="flex justify-center my-5">
                 <canvas
-                    ref = {canvasRef}
-                    width = {800}
-                    height = {300}
-                    style = {{border: '1px solid black'}}
+                    ref={canvasRef}
+                    width={800}
+                    height={300}
+                    className="rounded"
+                    style={{border: '2px solid #ee9b00ff'}}
                 />
             </div>
 
-            <div style={{marginTop:'20px'}}>
-                <button onClick={handlePlay} disabled={isPlaying}>
+            <div className="flex justify-center gap-4 my-5">
+                <button 
+                    onClick={handlePlay} 
+                    disabled={isPlaying}
+                    className="px-6 py-2 rounded font-semibold transition-all"
+                    style={{
+                        backgroundColor: isPlaying ? '#555' : '#ee9b00ff',
+                        color: '#001219ff',
+                        cursor: isPlaying ? 'not-allowed' : 'pointer',   
+                        opacity: isPlaying ? 0.6 : 1
+                    }}
+                >
                     Play
                 </button>
-                <button onClick={handlePause} disabled={!isPlaying}>
+                <button 
+                    onClick={handlePause} 
+                    disabled={!isPlaying}
+                    className="px-6 py-2 rounded font-semibold transition-all"
+                    style={{
+                        backgroundColor: !isPlaying ? '#555' : '#ee9b00ff',
+                        color: '#001219ff',
+                        cursor: !isPlaying ? 'not-allowed' : 'pointer',
+                        opacity: !isPlaying ? 0.6 : 1
+                    }}
+                >
                     Pause
                 </button>
-                <button onClick={handleReset}>
+                <button 
+                    onClick={handleReset}
+                    className="px-6 py-2 rounded font-semibold transition-all"
+                    style={{
+                        backgroundColor: '#ee9b00ff',
+                        color: '#001219ff',
+                        cursor: 'pointer'
+                    }}
+                >
                     Reset
                 </button>
             </div>
 
-            <div style={{marginTop:'10px'}}>
-                <p>Target: {target}</p>
-                <p>Left: {left}, Right:{right}, Mid: {mid}</p>
+            <div className="text-center mt-5">
+                <p className="text-lg mb-2" style={{color: '#e9d8a6ff'}}>Target: <span className="font-bold" style={{color: '#ee9b00ff'}}>{target}</span></p>
+                <p className="text-lg" style={{color: '#e9d8a6ff'}}>Left: <span style={{color: '#0a9396ff'}}>{left}</span>, Right: <span style={{color: '#0a9396ff'}}>{right}</span>, Mid: <span style={{color: '#ee9b00ff'}}>{mid}</span></p>
             </div>
 
         </div>

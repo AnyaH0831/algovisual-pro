@@ -1,93 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
-:root {
-  /* CSS HEX */
-  --ink-black: #001219ff;
-  --dark-teal: #005f73ff;
-  --dark-cyan: #0a9396ff;
-  --pine-teal: #004733ff;
-  --dusty-olive: #75906dff;
-  --vanilla-custard: #e9d8a6ff;
-  --golden-orange: #ee9b00ff;
-  --rusty-spice: #bb3e03ff;
-  --oxidized-iron: #ae2012ff;
-  --mahogany-red: #a5211cff;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply font-quicksand m-0;
+  }
+
+  html, body {
+    @apply bg-[#001219ff] text-[#e9d8a6ff] h-full w-full;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-[#e9d8a6ff];
+  }
 }
 
-/* body {
-  
-  color: var(--vanilla-custard);
-} */
+@layer components {
+  .navbar {
+    @apply px-6 py-4 flex items-center border-b border-[#005f73ff] bg-[#001219ff];
+  }
 
-/* base styles */
-* {
-  margin: 0;
-  font-family: "Quicksand";
-  background-color: var(--ink-black);
-  /* color: #333; */
-  color: var(--vanilla-custard);
-}
-.navbar {
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  max-width: 600px;
-  margin: 0 auto;
-  border-bottom: 1px solid #f2f2f2;
-}
-.navbar h1 {
-  color: #f1356d;
-}
-.navbar .links {
-  margin-left: auto;
-}
-.navbar a {
-  margin-left: 16px;
-  text-decoration: none;
-  padding: 6px;
-}
-.navbar a:hover {
-  color: #f1356d;
-}
-.content {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
-}
+  .navbar h1 {
+    @apply text-2xl font-bold text-[#ee9b00ff];
+  }
 
-/* blog previews / list */
-.blog-preview {
-  padding: 10px 16px;
-  margin: 20px 0;
-  border-bottom: 1px solid #fafafa;
-}
-.blog-preview:hover {
-  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
-}
-.blog-preview h2 {
-  font-size: 20px;
-  color: #f1356d;
-  margin-bottom: 8px;
-}
+  .navbar .links {
+    @apply ml-auto flex gap-4;
+  }
 
-button{
-  font-size: 20px;
-  background-color: var(--golden-orange);
-  color: var(--ink-black);
-  padding: 5px 5px;
-  border: none;
-  cursor: pointer;
-  min-width: 100px;
-  border-radius: 5px;
-  margin: 5px;
+  .navbar a {
+    @apply no-underline p-2 text-[#e9d8a6ff] hover:text-[#ee9b00ff] transition-colors duration-200;
+  }
+
+  .content {
+    @apply max-w-4xl mx-auto mt-10 px-6 pb-10;
+  }
+
+  button {
+    @apply text-lg px-6 py-2 border-none cursor-pointer rounded transition-all duration-200;
+  }
+
+  button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
 }
-
-button:hover {
-  background-color: var(--rusty-spice);
-}
-
-
-/* button{
-  font-size: 20px;
-  background-color: var(--golden-orange);
-} */
