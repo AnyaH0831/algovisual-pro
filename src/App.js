@@ -1,6 +1,7 @@
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import BinarySearchVisualizer from './pages/BinarySearchVisualizer';
+import DFSVisualizer from './pages/DFSVisualizer';
 
 function App() {
   return (
@@ -8,10 +9,12 @@ function App() {
       <Navbar />
       <div className="content">
           {/* <Home /> */}
-          <BinarySearchVisualizer/>
+          {/* <BinarySearchVisualizer/> */}
+          <DFSVisualizer/>
+
       </div>
     </div>
   );
 }
-
+  
 export default App;

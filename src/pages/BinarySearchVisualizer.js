@@ -58,7 +58,6 @@ function BinarySearchVisualizer(){
                 ctx.fillStyle = COLORS.darkTeal;
             }
 
-
             ctx.fillRect(x,y,boxWidth,boxHeight);
             ctx.strokeStyle = COLORS.vanillaCustard;
 
