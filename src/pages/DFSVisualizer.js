@@ -23,7 +23,7 @@ const INITIAL_NODES = [
     {id: 6, x: 220, y: 360, label: 'G'},
     {id: 7, x: 420, y: 360, label: 'H'}
 ];
-
+             
 const ADJACENCY = {
     0: [1,3],
     1: [0,2,4],

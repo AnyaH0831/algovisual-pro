@@ -6,3 +6,6 @@ Tech Stack:
 - React (Vite)
 - TailwindCSS
 - JavaScript
+
+For local testing, run
+    npm run dev

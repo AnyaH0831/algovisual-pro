@@ -35,6 +35,30 @@
     @apply no-underline p-2 text-[#e9d8a6ff] hover:text-[#ee9b00ff] transition-colors duration-200;
   }
 
+  .navbar a.active {
+    @apply text-[#ee9b00ff];
+  }
+
+  .dropdown {
+    @apply relative;
+  }
+
+  .dropdown-toggle {
+    @apply bg-transparent border-none shadow-none no-underline p-2 text-[#e9d8a6ff] hover:text-[#ee9b00ff] transition-colors duration-200;
+  }
+
+  .dropdown-toggle.active {
+    @apply text-[#ee9b00ff];
+  }
+
+  .dropdown-menu {
+    @apply absolute right-0 mt-1 min-w-44 rounded border border-[#005f73ff] bg-[#001219ff] z-10;
+  }
+
+  .dropdown-menu a {
+    @apply block px-3 py-2;
+  }
+
   .content {
     @apply max-w-4xl mx-auto mt-10 px-6 pb-10;
   }
