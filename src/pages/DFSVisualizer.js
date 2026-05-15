@@ -13,35 +13,35 @@ const COLORS = {
     mahoganyRed: '#a5211cff'
 };
 
+const INITIAL_NODES = [
+    {id: 0, x: 120, y: 60, label: 'A'},
+    {id: 1, x: 320, y: 60, label: 'B'},
+    {id: 2, x: 520, y: 60, label: 'C'},
+    {id: 3, x: 120, y: 220, label: 'D'},
+    {id: 4, x: 320, y: 220, label: 'E'},
+    {id: 5, x: 520, y: 220, label: 'F'},
+    {id: 6, x: 220, y: 360, label: 'G'},
+    {id: 7, x: 420, y: 360, label: 'H'}
+];
+
+const ADJACENCY = {
+    0: [1,3],
+    1: [0,2,4],
+    2: [1,5],
+    3: [0,4,6],
+    4: [1,3,5,7],
+    5: [2,4],
+    6: [3],
+    7: [4]
+};
+
 function DFSVisualizer(){
-
-    const initialNodes = [
-        {id: 0, x: 120, y: 60, label: 'A'},
-        {id: 1, x: 320, y: 60, label: 'B'},
-        {id: 2, x: 520, y: 60, label: 'C'},
-        {id: 3, x: 120, y: 220, label: 'D'},
-        {id: 4, x: 320, y: 220, label: 'E'},
-        {id: 5, x: 520, y: 220, label: 'F'},
-        {id: 6, x: 220, y: 360, label: 'G'},
-        {id: 7, x: 420, y: 360, label: 'H'}
-    ];
-
-    const adjacency = {
-        0: [1,3],
-        1: [0,2,4],
-        2: [1,5],
-        3: [0,4,6],
-        4: [1,3,5,7],
-        5: [2,4],
-        6: [3],
-        7: [4]
-    };
        
-    const [nodes] = useState(initialNodes);
+    const [nodes] = useState(INITIAL_NODES);
     const [edges] = useState(() => {
         const e = [];
-        Object.keys(adjacency).forEach(k => {
-            adjacency[k].forEach(nb => {
+        Object.keys(ADJACENCY).forEach(k => {
+            ADJACENCY[k].forEach(nb => {
                 const a = Number(k), b = Number(nb);
                 if (a < b) e.push([a,b]);
             })
@@ -60,7 +60,7 @@ function DFSVisualizer(){
     const [found, setFound] = useState(false);
     const canvasRef = useRef(null);
 
-    const draw = () => {
+    useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
@@ -96,9 +96,7 @@ function DFSVisualizer(){
             ctx.textAlign = 'center';
             ctx.fillText(n.label, n.x, n.y + 6);
         });
-    };
-
-    useEffect(() => { draw(); }, [nodes, edges, visited, stack, current]);
+    }, [nodes, edges, visited, stack, current]);
 
     const handlePlay = () => { if (!found) setIsPlaying(true); }
     const handlePause = () => { setIsPlaying(false); }
@@ -137,7 +135,7 @@ function DFSVisualizer(){
                 return;
             }
 
-            const neighbors = (adjacency[node] || []).slice().reverse();
+            const neighbors = (ADJACENCY[node] || []).slice().reverse();
             neighbors.forEach(nb => {
                 setVisited(prev => prev); 
                 setStack(prev => {
@@ -149,7 +147,7 @@ function DFSVisualizer(){
         }, delay);
                         
         return () => clearTimeout(timer);
-    }, [isPlaying, stack, speed, found, target]);       
+    }, [isPlaying, stack, speed, found, target, nodes, visited]);       
 
     return (
         <div className="w-full">

@@ -16,12 +16,12 @@ const COLORS = {
 function BinarySearchVisualizer(){
 
     //State Management
-    const [array, setArray] = useState([7, 14, 21, 28, 35, 42, 49, 56, 63, 70]);
-    const [target, setTarget] = useState(28);
+    const [array] = useState([7, 14, 21, 28, 35, 42, 49, 56, 63, 70]);
+    const [target] = useState(28);
 
     const [currentStep, setCurrentStep] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
-    const[speed, setSpeed] = useState(1);
+    const[speed] = useState(1);
     
     const[left, setLeft] = useState(0);
     const[right, setRight] = useState(array.length - 1);
@@ -29,9 +29,7 @@ function BinarySearchVisualizer(){
 
     const canvasRef = useRef(null);
 
-    //Draw function
-    const draw = () => {
-
+    useEffect(() => {
         const canvas = canvasRef.current;
 
         if (!canvas) return;
@@ -71,13 +69,6 @@ function BinarySearchVisualizer(){
             ctx.font = '14px Arial';
             ctx.fillText(index, x+boxWidth/2, y+boxHeight + 20);
         });
-
-
-
-    };
-
-    useEffect(() => {
-        draw();
     }, [left,right, mid,array]);
 
     const handlePlay = () =>{

@@ -1,6 +1,4 @@
-import Home from './pages/Home';
 import Navbar from './components/Navbar';
-import BinarySearchVisualizer from './pages/BinarySearchVisualizer';
 import DFSVisualizer from './pages/DFSVisualizer';
 
 function App() {
