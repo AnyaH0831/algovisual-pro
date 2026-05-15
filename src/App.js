@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 
 import BinarySearchVisualizer from './pages/BinarySearchVisualizer';
-import DFSVisualizer from './pages/DFSVisualizer';
+import DFSVisualizer from './pages/DfsVisualizerPage';
 
 function App() {
   const [activePage, setActivePage] = useState('home');
@@ -13,7 +13,7 @@ function App() {
     if (activePage === 'dfs') return <DFSVisualizer />;
     return <Home />;
   };
-
+ 
   return (
     <div className="min-h-screen bg-[#001219ff]">
       <Navbar activePage={activePage} onNavigate={setActivePage} />

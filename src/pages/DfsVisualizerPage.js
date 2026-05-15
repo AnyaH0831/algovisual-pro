@@ -195,4 +195,3 @@ function DFSVisualizer(){
 
 
 export default DFSVisualizer;
-   

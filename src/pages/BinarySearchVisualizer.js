@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react'
+import {useState, useEffect, useRef, useCallback} from 'react'
 
 const COLORS = {
     inkblack:'#001219ff',
@@ -16,12 +16,12 @@ const COLORS = {
 function BinarySearchVisualizer(){
 
 
-    const [array, setArray] = useState([7, 14, 21, 28, 35, 42, 49, 56, 63, 70]);
-    const [target, setTarget] = useState(28);
+    const [array] = useState([7, 14, 21, 28, 35, 42, 49, 56, 63, 70]);
+    const [target] = useState(28);
 
     const [currentStep, setCurrentStep] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
-    const[speed, setSpeed] = useState(1);
+    const [speed] = useState(1);
     
     const[left, setLeft] = useState(0);
     const[right, setRight] = useState(array.length - 1);
@@ -29,7 +29,7 @@ function BinarySearchVisualizer(){
 
     const canvasRef = useRef(null);
  
-    const draw = () => {
+    const draw = useCallback(() => {
 
         const canvas = canvasRef.current;
 
@@ -73,11 +73,11 @@ function BinarySearchVisualizer(){
 
 
 
-    };
+    }, [array, left, right, mid]);
 
     useEffect(() => {
         draw();
-    }, [left,right, mid,array]);
+    }, [draw]);
 
     const handlePlay = () =>{
         setIsPlaying(true);
